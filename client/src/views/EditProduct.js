@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 
 import ProductForm from '../components/ProductForm';
+import DeleteButton from '../components/DeleteButton';
 
 
 const EditProduct = (props) => {
@@ -13,8 +14,16 @@ const EditProduct = (props) => {
     const {productId} = props.match.params;
     const [loaded, setLoaded] = useState(false);
     
+    // initialProduct para rellenar
+    const initialProduct = {
+        productName: "",
+        price: 0,
+        description: ""
+    }
+
     // STATE
-    const [product, setProduct] = useState("");
+    const [product, setProduct] = useState(initialProduct);
+
 
 
     // GET PRODUCT
@@ -30,6 +39,7 @@ const EditProduct = (props) => {
         }
     }
 
+    // Para renderizar y obtener getProductById al momento de cargar
     useEffect (() => {
         getProductById(productId)
     }, []);
@@ -45,16 +55,14 @@ const EditProduct = (props) => {
     return (
         <div>
             <h1>Update</h1>
-                <div>
-                    {console.log(product.price)}
-                    {console.log(product.productName)}
-                </div>
                 {loaded && (
                 <div>
-                    <ProductForm initialName={product.productName} initialPrice= {product.price} initialDescription={product.description} onSubmitProp={updateProduct} />
+                    <ProductForm initialProduct={product} onSubmitProp={updateProduct} />
                 </div>
                 )}
-
+            <div>
+                <DeleteButton productId={product._id} successCallBack={() => props.history.push("/")}>Delete</DeleteButton>
+            </div>
 
         </div>
     )

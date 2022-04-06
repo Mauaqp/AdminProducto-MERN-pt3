@@ -7,6 +7,9 @@ module.exports = function (app) {
   // POST : Create product
     app.post('/product/new', ProductController.createProduct);
     
-    app.put('/products/:id/edit', ProductController.updateProduct);
-    app.delete("/products/:id/delete", ProductController.deleteProduct);
+  // PUT : Update product
+    app.put('/:id/edit', ProductController.updateProduct);
+  
+  // DELETE : Delete product
+    app.delete("/product/:id/delete", ProductController.deleteProduct);
   }

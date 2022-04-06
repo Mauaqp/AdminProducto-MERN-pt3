@@ -6,8 +6,15 @@ import ProductsList from "../components/ProductsList";
 
 const Main = () => {
 
+  const [loaded, setLoaded] = useState(true);
   const [products, setProducts] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+
+  //initialProduct que se envía a ProductForm
+  const initialProduct = {
+    productName: "",
+    price: 0,
+    description: ""
+}
 
   useEffect(() => {
     axios.get("http://localhost:8000/products/").then((res) => {
@@ -35,7 +42,7 @@ const Main = () => {
 
         <div>
           <h1>Product Manager</h1>
-          <ProductForm onSubmitProp={createProduct}/>
+          <ProductForm initialProduct={initialProduct} onSubmitProp={createProduct}/>
           <hr />
           <ProductsList />
         </div>
