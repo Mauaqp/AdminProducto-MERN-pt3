@@ -30,13 +30,14 @@ module.exports.createProduct = (request, response) => {
     .catch(err => response.json(err))
   }
   
-  
+  // UPDATE product por ID
   module.exports.updateProduct = (request, response) => {
     Product.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
-      .then(updatedPerson => response.json(updatedPerson))
+      .then(updatedProduct => response.json(updatedProduct))
       .catch(err => response.json(err))
   }
   
+  // DELETE
   module.exports.deleteProduct = (request, response) => {
     Product.findOneAndDelete({ _id: request.params.id })
       .then(deleteConfirmation => response.json(deleteConfirmation))

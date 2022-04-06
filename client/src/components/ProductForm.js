@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import axios from 'axios';
 
 const ProductForm = (props) => {
@@ -10,20 +9,20 @@ const ProductForm = (props) => {
   const [price, setPrice] = useState(initialPrice);
   const [description, setDescription] = useState(initialDescription);
 
-  const [product, setProduct] = useState([]);
+  // const [product, setProduct] = useState(props);
 
-  const handleCreateProduct = (e) => {
-    e.preventDefault();
-    onSubmitProp(product);
-    setProduct();
-  }
+  // const handleCreateProduct = (e) => {
+  //   e.preventDefault();
+  //   onSubmitProp(product);
+  //   setProduct();
+  // }
 
-  const handleOnChange = (e) => {
-    setProduct ({
-      ...product,
-      [e.target.name] : e.target.value
-    })
-  }
+  // const handleOnChange = (e) => {
+  //   setProduct ({
+  //     ...product,
+  //     [e.target.name] : e.target.value
+  //   })
+  // }
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -36,18 +35,18 @@ const ProductForm = (props) => {
   return (
     <>
         <div>
-            <form onSubmit={handleCreateProduct} >
+            <form onSubmit={onSubmitHandler} >
                 <div>
                     <label htmlFor="productName">Product Name</label>
-                    <input onChange={handleOnChange} type="text" name='productName' value={product.productName} />
+                    <input onChange={(e) => setProductName(e.target.value)} type="text" name='productName' value={productName} />
                 </div>
                 <div>
                     <label htmlFor="price">Price</label>
-                    <input onChange={handleOnChange} type="number" name='price' value={product.price} />
+                    <input onChange={(e) => setPrice(e.target.value)} type="number" name='price' value={price} />
                 </div>
                 <div>
                     <label  htmlFor="description">Description</label>
-                    <input onChange={handleOnChange} type="text" name='description' value={product.description} />
+                    <input onChange={(e) => setDescription(e.target.value)} type="text" name='description' value={description} />
                 </div>
                 <button type='submit' className='btn btn-success'>Submit</button>
             </form>

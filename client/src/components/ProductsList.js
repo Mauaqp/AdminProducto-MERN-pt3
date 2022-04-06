@@ -16,9 +16,8 @@ const ProductsList = () => {
         getAllProducts();
     }, []);
 
-
     return (
-
+        
         <div>
             <h3>All Products:</h3>
             {
